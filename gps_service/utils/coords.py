@@ -29,7 +29,7 @@ class Coords():
         try:
             parsed_frame = pynmea2.parse(frame)
             print(dir(parsed_frame))
-            self._find_fields()
+            self._find_fields(parsed_frame)
             self.frames_list.append(parsed_frame)
             self.frames_list = self.frames_list[-100:]
         except pynmea2.ParseError:
