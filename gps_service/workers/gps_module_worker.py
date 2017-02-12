@@ -38,4 +38,4 @@ class GpsModuleWorker(YieldPeriodicCallback):
             # print("-*-\n%d\n\n%s\n-#-" % (self.run_number, ramki))
         self.run_number += 1
         if self.run_number % 10 == 0:
-            print(self.coords.frames_list)
+            print(len(self.coords.frames_list))

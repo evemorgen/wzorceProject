@@ -11,6 +11,7 @@ class Coords():
         try:
             parsed_frame = pynmea2.parse(frame)
             self.frames_list.append(parsed_frame)
+            self.frames_list = self.frames_list[-100:]
         except pynmea2.ParseError:
             logging.info('parse error :(')
             raise
