@@ -29,7 +29,7 @@ class Coords():
         if hasattr(frame, 'num_sats'):
             self.state_dict['sat']['sat_used'] = frame.num_sats
         if hasattr(frame, 'timestamp'):
-            self.state_dict['timestamp'] = frame.timestamp
+            self.state_dict['timestamp'] = str(frame.timestamp)
 
     def add_frame(self, frame):
         try:
@@ -43,5 +43,14 @@ class Coords():
         except pynmea2.nmea.ChecksumError:
             logging.info('checksum does not match, discarding')
 
-    def get_last_n_frames(self, n):
+    def get_raw_frames(self, n):
         return self.frames_list[-n:]
+
+    def get_sat_info(self):
+        return self.state_dict['sat']
+
+    def get_pos_info(self):
+        return self.state_dict['pos']
+
+    def get_all_data(self):
+        return self.state_dict
