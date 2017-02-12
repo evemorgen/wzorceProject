@@ -33,9 +33,9 @@ class GpsModuleWorker(YieldPeriodicCallback):
             if '' in ramki:
                 ramki.remove('')
             for ramka in ramki:
+                logging.info(ramka)
                 if ramka[0] == '$' and ramka[-3] == '*':
                     self.coords.add_frame(ramka)
-            # print("-*-\n%d\n\n%s\n-#-" % (self.run_number, ramki))
         self.run_number += 1
         if self.run_number % 10 == 0:
             print(len(self.coords.frames_list))
