@@ -11,17 +11,17 @@ class Coords():
         }
 
     def _find_fields(self, frame):
-        if frame.latitude is not None:
+        if hasattr(frame, 'latitude'):
             self.state_dict['latitude'] = frame.latitude
-        if frame.latitude is not None:
+        if hasattr(frame, 'latitude_minutes'):
             self.state_dict['latitude_minutes'] = frame.latitude_minutes
-        if frame.latitude_seconds is not None:
+        if hasattr(frame, 'latitude_seconds'):
             self.state_dict['latitude_seconds'] = frame.latitude_seconds
-        if frame.latitude is not None:
+        if hasattr(frame, 'latitude'):
             self.state_dict['longitude'] = frame.longitude
-        if frame.latitude is not None:
+        if hasattr(frame, 'latitude'):
             self.state_dict['longitude_minutes'] = frame.longitude_minutes
-        if frame.latitude_seconds is not None:
+        if hasattr(frame, 'latitude_seconds'):
             self.state_dict['longitude_seconds'] = frame.longitude_seconds
 
 
