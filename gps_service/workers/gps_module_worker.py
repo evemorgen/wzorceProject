@@ -23,7 +23,7 @@ class GpsModuleWorker(YieldPeriodicCallback):
 
     @coroutine
     def run(self):
-        (count, data) = pi.bb_serial_read(self.rx_pin)
+        (count, data) = self.raspi.bb_serial_read(self.rx_pin)
         if count > 0:
             print("-*-\n%d\n\n%s\n-#-" % (self.run_number, data.decode('utf-8')))
         self.run_number += 1
