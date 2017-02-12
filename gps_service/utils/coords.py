@@ -13,8 +13,9 @@ class Coords():
     def add_frame(self, frame):
         try:
             parsed_frame = pynmea2.parse(frame)
-            if parsed_frame.status is not None:
-                self.state_dict['status'] = parsed_frame.status
+            print(dir(parsed_frame))
+            #if parsed_frame.status is not None:
+            #    self.state_dict['status'] = parsed_frame.status
             self.frames_list.append(parsed_frame)
             self.frames_list = self.frames_list[-100:]
         except pynmea2.ParseError:
