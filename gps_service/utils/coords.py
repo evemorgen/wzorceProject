@@ -19,7 +19,7 @@ class Coords():
             self.state_dict['latitude_seconds'] = frame.latitude_seconds
         if hasattr(frame, 'latitude'):
             self.state_dict['longitude'] = frame.longitude
-        if hasattr(frame, 'latitude'):
+        if hasattr(frame, 'latitude_minutes'):
             self.state_dict['longitude_minutes'] = frame.longitude_minutes
         if hasattr(frame, 'latitude_seconds'):
             self.state_dict['longitude_seconds'] = frame.longitude_seconds
