@@ -3,10 +3,13 @@ import logging
 from tornado.web import RequestHandler
 from tornado.gen import coroutine
 
+from utils import Config
+
 
 class MainHandler(RequestHandler):
 
     def initialize(self, coords):
+        self.config = Config()
         self.coords = coords
 
     def set_default_headers(self):
@@ -17,7 +20,7 @@ class MainHandler(RequestHandler):
     @coroutine
     def post(self):
         logging.info('post in main handler')
-        self.write(str(self.coords.frames_list))
+        self.write(str(self.coords.state_dict))
 
     def options(self):
         self.set_status(204)
