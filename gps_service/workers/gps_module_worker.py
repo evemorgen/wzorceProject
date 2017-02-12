@@ -29,9 +29,11 @@ class GpsModuleWorker(YieldPeriodicCallback):
         (count, data) = self.raspi.bb_serial_read(self.rx_pin)
         data = data.decode('utf-8')
         if count > 0:
-            ramki = data.split('\r\n').remove('')
+            ramki = data.split('\r\n')
+            if '' in ramki:
+                ramki.remove('')
             for ramka in ramki:
-                if ramka != '' and ramka[0] == '$' and ramka[-3] == '*':
+                if ramka[0] == '$' and ramka[-3] == '*':
                     self.coords.add_frame(ramka)
             # print("-*-\n%d\n\n%s\n-#-" % (self.run_number, ramki))
         self.run_number += 1
