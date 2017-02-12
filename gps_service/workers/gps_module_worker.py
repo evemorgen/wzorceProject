@@ -30,8 +30,7 @@ class GpsModuleWorker(YieldPeriodicCallback):
         data = data.decode('utf-8')
         if count > 0:
             ramki = data.split('\r\n')
-            if '' in ramki:
-                ramki.remove('')
+            ramki = [x for x in ramki if len(3) > 3 and x != '']
             for ramka in ramki:
                 logging.info(ramka)
                 if ramka[0] == '$' and ramka[-3] == '*':
