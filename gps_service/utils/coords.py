@@ -14,6 +14,8 @@ class Coords():
         except pynmea2.ParseError:
             logging.info('parse error :(')
             raise
+        except pynmea2.ChecksumError:
+            logging.info('checksum does not match, discarding')
 
     def get_last_n_frames(self, n):
         return self.frames_list[-n:]
