@@ -43,7 +43,7 @@ class Coords():
             logging.info('checksum does not match, discarding')
 
     def get_raw_frames(self, n):
-        return self.frames_list[-n:]
+        return [str(x) for x in self.frames_list[-n:]]
 
     def get_sat_info(self):
         return self.state_dict['sat']
