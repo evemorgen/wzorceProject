@@ -15,9 +15,9 @@ from workers import GpsModuleWorker
 PORT = 12345  # replace this with random port when register will be working
 
 
-def make_app():
+def make_app(coords):
     return Application([
-        (r'/', MainHandler),
+        (r'/', MainHandler, {"coords": coords}),
         (r'/healthcheck', HealthCheckHandler),
     ])
 
@@ -30,6 +30,6 @@ if __name__ == '__main__':
     gps_worker = GpsModuleWorker(coords)
     service = Service('0.0.0.0', PORT, 'GPS')
     service.register_interface()
-    app = make_app()
+    app = make_app(coords)
     app.listen(PORT)
     IOLoop.current().start()
