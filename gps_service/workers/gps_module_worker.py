@@ -3,11 +3,13 @@ import logging
 from tornado.gen import coroutine
 from pigpio import pi, INPUT
 
-from utils import YieldPeriodicCallback, Config
+from utils import YieldPeriodicCallback
+from utils import Config
 
 
 class GpsModuleWorker(YieldPeriodicCallback):
-    def __init__(self):
+    def __init__(self, coords):
+        self.coords = coords
         self.config = Config()
         self.rx_pin = self.config['rx_pin']
         self.configure_raspi()
@@ -30,6 +32,9 @@ class GpsModuleWorker(YieldPeriodicCallback):
             ramki = data.split('\r\n')
             for ramka in ramki:
                 if ramka != '':
+                    self.coords.add_frame(ramka)
                     print('%s %s %s' % (ramka, ramka[0] == '$', ramka[-3] == '*'))
             # print("-*-\n%d\n\n%s\n-#-" % (self.run_number, ramki))
         self.run_number += 1
+        if self.run_number % 10 == 0:
+            print(self.coords.get_last_n_frames(10))
