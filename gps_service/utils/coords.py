@@ -12,18 +12,23 @@ class Coords():
 
     def _find_fields(self, frame):
         if hasattr(frame, 'latitude'):
-            self.state_dict['latitude'] = frame.latitude
+            self.state_dict['pos']['latitude'] = frame.latitude
         if hasattr(frame, 'latitude_minutes'):
-            self.state_dict['latitude_minutes'] = frame.latitude_minutes
+            self.state_dict['pos']['latitude_minutes'] = frame.latitude_minutes
         if hasattr(frame, 'latitude_seconds'):
-            self.state_dict['latitude_seconds'] = frame.latitude_seconds
+            self.state_dict['pos']['latitude_seconds'] = frame.latitude_seconds
         if hasattr(frame, 'latitude'):
-            self.state_dict['longitude'] = frame.longitude
+            self.state_dict['pos']['longitude'] = frame.longitude
         if hasattr(frame, 'latitude_minutes'):
-            self.state_dict['longitude_minutes'] = frame.longitude_minutes
+            self.state_dict['pos']['longitude_minutes'] = frame.longitude_minutes
         if hasattr(frame, 'latitude_seconds'):
-            self.state_dict['longitude_seconds'] = frame.longitude_seconds
-
+            self.state_dict['pos']['longitude_seconds'] = frame.longitude_seconds
+        if hasattr(frame, 'num_sv_in_view'):
+            self.state_dict['sat']['sat_in_view'] = frame.num_sv_in_view
+        if hasattr(frame, 'num_sats'):
+            self.state_dict['sat']['sat_used'] = frame.num_sats
+        if hasattr(frame, 'timestamp'):
+            self.state_dict['timestamp'] = frame.timestamp
 
     def add_frame(self, frame):
         try:
