@@ -7,7 +7,8 @@ class Coords():
     def __init__(self):
         self.frames_list = []
         self.state_dict = {
-            'status': None
+            'pos': {},
+            'sat': {}
         }
 
     def _find_fields(self, frame):
