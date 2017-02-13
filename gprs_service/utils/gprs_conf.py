@@ -5,7 +5,7 @@ import time
 def reader(t):
     out = ''
     time.sleep(t)
-    while console.inWaiting() > 0
+    while console.inWaiting() > 0:
         out += console.read(1)
     if out != '':
         print ">>" + out
