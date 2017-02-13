@@ -108,7 +108,8 @@ Now type your message, press Enter and
 WYSLIJ
 ```
 WYSLIJ is equivalent screen Ctrl+z
-After moment you get response:
+
+Wait moment and you get response:
 ```
 +CMGS: 44
 
