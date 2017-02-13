@@ -29,3 +29,5 @@ def gprs_conf():
     console.write('at+ciicr\r\n')
     reader(1)
     console.write('at+cifsr\r\n')
+
+gprs_conf()
