@@ -3,7 +3,7 @@ import time
 
 class Gprs_conf():
     def __init__(self):
-        console = serial.Serial(
+        self.console = serial.Serial(
             port='/dev/ttyAMA0',
             baudrate=9600,
         )
