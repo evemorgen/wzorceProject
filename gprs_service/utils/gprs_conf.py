@@ -15,6 +15,7 @@ class Gprs_conf():
             out += self.console.read(1)
         if out != '':
             print ">>" + out
+        time.sleep(t)
 
     def setConf(self):    
         self.console.isOpen()
