@@ -11,8 +11,8 @@ class Gprs_conf():
     def reader(self,t):
         out = ''
         time.sleep(t)
-        while console.inWaiting() > 0:
-            out += console.read(1)
+        while self.console.inWaiting() > 0:
+            out += self.console.read(1)
         if out != '':
             print ">>" + out
 
