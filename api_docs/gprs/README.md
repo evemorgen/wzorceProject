@@ -28,7 +28,7 @@ To configure GPRS follow this commands:
 Follow command written below :
 
 
-1. Start TCP connection with student.agh.edu.pl on port 80.
+ - Start TCP connection with student.agh.edu.pl on port 80.
 ```
 at+cipstart="TCP","student.agh.edu.pl","80"
 ```
@@ -39,7 +39,7 @@ CONNECTION OK
 ```
 
 
-2. Indicate that we will be making HTTP connection, after command prompt should be seat as ">".
+ - Indicate that we will be making HTTP connection, after command prompt should be seat as ">".
 ```
 at+cipsend
 ``` 
@@ -49,7 +49,7 @@ Response:
 ```
 
 
-3. Make HTTP request.
+ - Make HTTP request.
 ```
 GET /~cvmorgen/skrypt_ipki/index.php?ip=dupa HTTP/1.0
 ``` 
