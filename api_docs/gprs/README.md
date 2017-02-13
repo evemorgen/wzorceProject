@@ -13,6 +13,7 @@ script connets to port /dev/ttyAMA0 with rate 9600 using python serial.
 To configure GPRS follow this commands:
 
 | Command | Description | Response |
+| ------- | ----------- | -------- |
 | at+cfun=1,1 | Restart modula | OK |
 | at+creg=1 | Enable network registration | OK |
 | at+cgatt=1 | Attach GPRS service | OK |
