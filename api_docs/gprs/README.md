@@ -2,14 +2,15 @@
 
 
 
-## 1. AT command
-To test AT command use prepared python script
-'''sh
-sudo python pyserial_example.py
-'''
-script connets to port /dev/ttyAMA0 with rate 9600 using python serial.
 
-##### GPRS configuration
+# 1. AT command
+To test AT command use prepared python script
+```sh
+sudo python pyserial_example.py
+```
+script connets to port `/dev/ttyAMA0` with rate `9600` using python serial.
+
+#### GPRS configuration
 To configure GPRS follow this commands:
 
 | Command | Description | Response |
@@ -22,4 +23,5 @@ To configure GPRS follow this commands:
 | at+cifsr | Get ip assigned to module, needed before trying to make any connections | ip adress |
 
 
-## 2. API
+
+# 2. API
