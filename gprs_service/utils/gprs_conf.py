@@ -31,6 +31,7 @@ class Gprs_conf():
         self.console.write('at+ciicr\r\n')
         self.reader(2)
         self.console.write('at+cifsr\r\n')
+        self.reader(2)
 
 
 conf = Gprs_conf()
