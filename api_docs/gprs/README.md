@@ -8,7 +8,8 @@ To test AT command use prepared python script
 ```sh
 sudo python pyserial_example.py
 ```
-script connets to port `/dev/ttyAMA0` with rate `9600` using python serial.
+script connets to `/dev/ttyAMA0` with rate `9600` using python serial.
+
 
 #### GPRS configuration
 To configure GPRS follow this commands:
@@ -22,6 +23,55 @@ To configure GPRS follow this commands:
 | at+ciicr | Start wireless connection with GPRS | OK |
 | at+cifsr | Get ip assigned to module, needed before trying to make any connections | ip adress |
 
+
+#### Example of usage for TCP HTTP request.
+Follow command written below :
+
+
+1.Start TCP connection with student.agh.edu.pl on port 80.
+```
+at+cipstart="TCP","student.agh.edu.pl","80"
+```
+Response :
+```
+OK
+CONNECTION OK
+```
+
+
+2. Indicate that we will be making HTTP connection, after command prompt should be seat as ">".
+```
+at+cipsend
+``` 
+Response:
+```
+>
+```
+
+
+3. Make HTTP request.
+```
+GET /~cvmorgen/skrypt_ipki/index.php?ip=dupa HTTP/1.0
+``` 
+press Enter twice and
+```
+WYSLIJ
+```
+WYSLIJ is equivalent screen Ctrl+z
+Response:
+```
+SEND OK
+HTTP/1.1 200 OK
+Date: Mon, 13 Feb 2017 17:03:19 GMT
+Server: Apache/2.2.31 (Unix) mod_ssl/2.2.31 OpenSSL/0.9.8zh
+X-Powered-By: PHP/5.3.29
+Connection: close
+Content-Type: text/html
+
+83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.30.203.140 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>dupa <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>dupa <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>dupa <br>83.5.244.208 <br>dupa <br>dupa <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>dupa <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>83.5.244.208 <br>213.180.148.5 <br>83.5.244.208 <br>83.5.244.208 <br>
+
+CLOSED
+```
 
 
 # 2. API
