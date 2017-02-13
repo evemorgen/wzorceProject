@@ -75,4 +75,45 @@ CLOSED
 ```
 
 
+#### Example of usage for sending SMS
+Follow commands written below:
+
+ - Make sure network registration is enable:
+```
+at+creg=1
+```
+Response:
+```
+OK
+```
+
+ - Set modem in TEXT MODE
+```
+at+cmgf=1
+```
+Response:
+```
+OK
+```
+ - To send SMS use command with number you want to send SMS
+```
+at+cmgs="+48_number"
+```
+Response:
+```
+>
+```
+Now type your message, press Enter and
+```
+WYSLIJ
+```
+WYSLIJ is equivalent screen Ctrl+z
+After moment you get response:
+```
++CMGS: 44
+
+OK
+```
+
+
 # 2. API
