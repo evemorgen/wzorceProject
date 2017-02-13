@@ -28,7 +28,7 @@ To configure GPRS follow this commands:
 Follow command written below :
 
 
-1.Start TCP connection with student.agh.edu.pl on port 80.
+1. Start TCP connection with student.agh.edu.pl on port 80.
 ```
 at+cipstart="TCP","student.agh.edu.pl","80"
 ```
@@ -58,6 +58,7 @@ press Enter twice and
 WYSLIJ
 ```
 WYSLIJ is equivalent screen Ctrl+z
+
 Response:
 ```
 SEND OK
