@@ -43,8 +43,8 @@ Return:
     You can choice whether you like to use GET or POST method
 <table>
     <tr><td>Method: GET</td></tr>
+    <tr><td>Format: GET formatted parameters<br />
     <tr><td>Parameters: <br /><br />
-        GET formatted parameters: <br />
         <ol>
             <li>id - integer - id of survey</li>
             <li>line - integer - id of tram line</li>
@@ -71,8 +71,8 @@ Return:
 
 <table>
     <tr><td>Method: POST</td></tr>
-    <tr><td>Parameters: <br /><br />
-        JSON object with parameters: <br />
+    <tr><td>Format: JSON object<br />
+    <tr><td>Fields: <br /><br />
         <ol>
             <li>id - integer - id of survey</li>
             <li>line - integer - id of tram line</li>
@@ -96,7 +96,3 @@ Return:
 ```
 
 ----------
-
-
-
-
