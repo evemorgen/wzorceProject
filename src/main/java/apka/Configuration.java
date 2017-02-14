@@ -12,7 +12,7 @@ public class Configuration {
 
 	private static Configuration instance = null;
 
-	public static final String FILENAME = "src/apka/config.json";
+	public static final String FILENAME = "src/main/java/apka/config.json";
 
 	private HashMap<String, Object> cfg;
 

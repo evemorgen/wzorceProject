@@ -27,7 +27,6 @@ public class MediatorHub implements Mediator {
 	 * u nas jest tylko jeden worker, do którego chcemy wys³aæ wiadomoœæ, czyli GPRS
 	 * @param message
 	 */
-	@Override
 	public void sendMessage(String message){
 		for (JobWorker jobWorker : jobWorkers){
 			jobWorker.receiveMessage(message);
