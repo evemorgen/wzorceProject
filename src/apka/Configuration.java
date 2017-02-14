@@ -1,54 +1,44 @@
 package apka;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.json.JSONObject;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Configuration {
 
-    private static Configuration instance = null;
+	private static Configuration instance = null;
 
-    public static final String FILENAME = "src/apka/config.json";
-    
-    private HashMap<String, Object> cfg;
+	public static final String FILENAME = "src/apka/config.json";
 
-    private static final Logger LOGGER = Logger.getLogger(Configuration.class.getName());
+	private HashMap<String, Object> cfg;
 
-    public static Configuration getInstance() {
-        if (Configuration.instance == null) {
-            Configuration.instance = new Configuration();
-        }
+	private static final Logger LOGGER = Logger.getLogger(Configuration.class.getName());
 
-        return Configuration.instance;
-    }
+	public static Configuration getInstance() {
+		if (Configuration.instance == null) {
+			Configuration.instance = new Configuration();
+		}
 
-    private Configuration() {
-        this.loadConfig(FILENAME);
-    }
+		return Configuration.instance;
+	}
+
+	private Configuration() {
+		this.loadConfig(FILENAME);
+	}
 
 	private void loadConfig(String fileName) {
-        try {
-        	
-            this.cfg = new ObjectMapper().readValue(new File(fileName), HashMap.class);
+		try {
 
-        } catch (IOException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
-        }
-    }
+			this.cfg = new ObjectMapper().readValue(new File(fileName), HashMap.class);
+
+		} catch (IOException ex) {
+			LOGGER.log(Level.SEVERE, null, ex);
+		}
+	}
 
 	public Object getItem(String key) {
 		return this.cfg.get(key);
@@ -57,13 +47,13 @@ public class Configuration {
 	public void setItem(String key, Object value) {
 		this.cfg.put(key, value);
 	}
-    
-    public void saveJson(){
-    	try {
+
+	public void saveJson() {
+		try {
 			new ObjectMapper().writeValue(new File(FILENAME), this.cfg);
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
 }
