@@ -74,7 +74,7 @@ class At_command:
 
 
 gprs = At_command()
-#gprs.config()
+gprs.config()
 gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
 gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',['Content-Type: application/x-www-form-urlencoded'],'ip=DUPOWY_POST_RULEZ')
 
