@@ -16,14 +16,22 @@ class Gprs_get:
             out += self.console.read(1)
         if out != '':
             print ">>" + out
-        time.sleep(10)
+        time.sleep(2)
 
 
     def send(self,url):
         head, req = url.split('/', 1)
         req = '/' + req
-        print head
-        print req
+        self.console.isOpen()
+        time.sleep(1)
+        self.console.write('at+cipstart="TCP","'+head+'","80"\r\n')
+        self.reader(2)
+        self.console.write('at+cipsend\r\n')
+        self.reader(2)
+        self.console.write('GET '+req+' HTTP/1.0\r\n')
+        time.sleep(0.5)
+        self..console.write(str(unichr(26)))
+        self.reader(2)
 
 
 
