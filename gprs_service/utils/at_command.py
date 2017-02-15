@@ -42,6 +42,8 @@ class At_command:
         'GET \%s HTTP/1.0\r\n\r\n' %req,
         str(chr(26))
         ]
+        self.console.isOpen()
+        time.sleep(0.5)
         for com in commandTab:
             self.console.write(str.encode(com))
             self.reader(2,2)
@@ -56,6 +58,8 @@ class At_command:
         '\%s\r\n\r\n' %params,
         str(chr(26))
         ]
+        self.console.isOpen()
+        time.sleep(0.5)
         for com in commandTab:
             self.console.write(str.encode(com))
             self.reader(2,2)
