@@ -55,8 +55,8 @@ class At_command:
         commandTab = [
         'at+cipstart="TCP","%s","80"\r\n' %head,
         'at+cipsend\r\n',
-        'POST %s HTTP/1.1\r\n' % req,
-        '%s\r\n\r\n' %params,
+        'POST %s HTTP/1.1\r\n\r\n' % req,
+        '%s\r\n' %params,
         str(chr(26))
         ]
         self.console.isOpen()
