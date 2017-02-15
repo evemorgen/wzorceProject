@@ -37,9 +37,9 @@ class At_command:
         head, req = url.split('/', 1)
         req = '/' + req
         commandTab = [
-        'at+cipstart="TCP","\%s","80"\r\n' %head,
+        'at+cipstart="TCP","%s","80"\r\n' %head,
         'at+cipsend\r\n',
-        'GET \%s HTTP/1.0\r\n\r\n' %req,
+        'GET %s HTTP/1.0\r\n\r\n' %req,
         str(chr(26))
         ]
         self.console.isOpen()
@@ -50,12 +50,13 @@ class At_command:
 
     def sendPost(self,url):
         head, req = url.split('/', 1)
+        req = '/' + req
         req, params = req.split('?', 1)
         commandTab = [
-        'at+cipstart="TCP","\%s","80"\r\n' %head,
+        'at+cipstart="TCP","%s","80"\r\n' %head,
         'at+cipsend\r\n',
-        'POST /%s HTTP/1.1\r\n' % req,
-        '\%s\r\n\r\n' %params,
+        'POST %s HTTP/1.1\r\n' % req,
+        '%s\r\n\r\n' %params,
         str(chr(26))
         ]
         self.console.isOpen()
