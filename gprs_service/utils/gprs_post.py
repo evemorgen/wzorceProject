@@ -15,7 +15,7 @@ class Gprs_post:
         while self.console.inWaiting() > 0:
             out += self.console.read(1)
         if out != '':
-            print ">>" + out
+            print (">>" + out)
         time.sleep(2)
 
 
