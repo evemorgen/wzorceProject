@@ -48,19 +48,23 @@ class At_command:
             self.console.write(str.encode(com))
             self.reader(2,2)
 
-    def sendPost(self,url):
+    def sendPost(self,url,headers,data):
         head, req = url.split('/', 1)
         req = '/' + req
-        req, params = req.split('?', 1)
+        for h in headers:
+            h = h+'\r\n'
+        headers[-1] = headers[-1] + '\r\n'
         commandTab = [
         'at+cipstart="TCP","%s","80"\r\n' %head,
         'at+cipsend\r\n',
         'POST %s HTTP/1.1\r\n' % req,
         'Host: %s\r\n' % head,
-        'Content-Length: %d\r\n' % len(params),
-        'Content-Type: application/x-www-form-urlencoded\r\n\r\n'
-        '%s\r\n' %params,
-        str(chr(26))
+        'Content-Length: %d\r\n' % len(data)]+[
+        headers
+        ]+[
+        '%s\r\n' %data,
+        str(chr(26)),
+        'at+cipclose'
         ]
         self.console.isOpen()
         time.sleep(0.5)
@@ -72,6 +76,6 @@ class At_command:
 gprs = At_command()
 #gprs.config()
 gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
-gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=POSTdupa')
+gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',['Content-Type: application/x-www-form-urlencoded'],'ip=DUPOWY_POST_RULEZ')
 
 
