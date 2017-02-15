@@ -52,7 +52,7 @@ class At_command:
         head, req = url.split('/', 1)
         req = '/' + req
         for h in headers:
-            h = h+'\r\n'
+            h = '%s\r\n', %h
         headers[-1] = headers[-1] + '\r\n'
         commandTab = [
         'at+cipstart="TCP","%s","80"\r\n' %head,
