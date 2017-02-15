@@ -2,7 +2,7 @@ import serial
 import time
 
 
-class Gprs_get:
+class Gprs_post:
     def __init__(self):
         self.console = serial.Serial(
         port='/dev/ttyAMA0',
@@ -28,12 +28,12 @@ class Gprs_get:
         self.reader(2)
         self.console.write('at+cipsend\r\n')
         self.reader(2)
-        self.console.write('GET '+req+' HTTP/1.0\r\n\r\n')
+        self.console.write('POST '+req+' HTTP/1.0\r\n\r\n')
         time.sleep(0.5)
         self.console.write(str(unichr(26)))
         self.reader(2)
 
 
 
-gprs = Gprs_get()
-gprs.send('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
+gprs = Gprs_post()
+gprs.send('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=POSTdupa')
