@@ -37,9 +37,9 @@ class At_command:
         head, req = url.split('/', 1)
         req = '/' + req
         commandTab = [
-        'at+cipstart="TCP","\s","80"\r\n' %head,
+        'at+cipstart="TCP","\%s","80"\r\n' %head,
         'at+cipsend\r\n',
-        'GET \s HTTP/1.0\r\n\r\n' %req,
+        'GET \%s HTTP/1.0\r\n\r\n' %req,
         str(unichr(26))
         ]
         for com in commandTab:
@@ -50,7 +50,7 @@ class At_command:
         head, req = url.split('/', 1)
         req, params = req.split('?', 1)
         commandTab = [
-        'at+cipstart="TCP","\s","80"\r\n' %head,
+        'at+cipstart="TCP","\%s","80"\r\n' %head,
         'at+cipsend\r\n',
         'POST /%s HTTP/1.1\r\n' % req,
         '\%s\r\n\r\n' %params,
@@ -62,7 +62,7 @@ class At_command:
 
 
 gprs = At_command()
-gprs.config()
+#gprs.config()
 gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
 gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=POSTdupa')
 
