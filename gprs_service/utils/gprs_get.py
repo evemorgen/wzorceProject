@@ -22,10 +22,10 @@ class Gprs_get:
     def send(self,url):
         head, req = url.split('/', 1)
         req = '/' + req
+        print head
+        print req
 
 
 
 gprs = Gprs_get()
 gprs.send('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=dupa')
-print gprs.head
-print gprs.req
