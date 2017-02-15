@@ -14,9 +14,9 @@ class Gprs_conf():
         out = ''
         time.sleep(t)
         while self.console.inWaiting() > 0:
-            out += self.console.read(1)
+            out += self.console.read(1).decode()
         if out != '':
-            print (">>" + out.decode())
+            print (">>" + out)
         time.sleep(10)
 
     def setConf(self):    
