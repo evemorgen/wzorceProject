@@ -59,8 +59,8 @@ class At_command:
         'at+cipsend\r\n',
         'POST %s HTTP/1.1\r\n' % req,
         'Host: %s\r\n' % head,
-        'Content-Length: %d\r\n' % len(data)]+
-        headers+[
+        'Content-Length: %d\r\n' % len(data)] +
+        headers + [
         '%s\r\n' %data,
         str(chr(26)),
         'at+cipclose'
