@@ -30,7 +30,7 @@ class Gprs_get:
         self.reader(2)
         self.console.write('GET '+req+' HTTP/1.0\r\n')
         time.sleep(0.5)
-        self..console.write(str(unichr(26)))
+        self.console.write(str(unichr(26)))
         self.reader(2)
 
 
