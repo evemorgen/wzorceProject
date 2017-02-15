@@ -1,6 +1,9 @@
 package apka.services;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import org.springframework.stereotype.Service;
 
@@ -20,10 +23,22 @@ public class RegisterService {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		client.setId(this.md5());
 		Configuration.getInstance().setClient(client);
 		Configuration.getInstance().saveJson();
-
-		return registrationTO;
+		return "{\"id\":\"" + client.getId() + "\"}";
+	}
+	
+	private String md5(){
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			String id = "xyz" + System.currentTimeMillis();
+	        byte[] messageDigest = md.digest(id.getBytes());
+	        BigInteger number = new BigInteger(1, messageDigest);
+	        return number.toString(16);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

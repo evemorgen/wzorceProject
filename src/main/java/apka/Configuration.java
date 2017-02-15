@@ -40,6 +40,10 @@ public class Configuration {
 			LOGGER.log(Level.SEVERE, null, ex);
 		}
 	}
+	
+	public List<Client> getCfg() {
+		return cfg;
+	}
 
 	public Client getClient(int index) {
 		return this.cfg.get(index);
@@ -49,12 +53,24 @@ public class Configuration {
 		this.cfg.add(client);
 	}
 
+	public void deleteClient(String id) {
+		this.cfg.remove(this.getIndexById(id));
+	}
+	
 	public void saveJson() {
 		try {
 			new ObjectMapper().writeValue(new File(FILENAME), this.cfg);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private int getIndexById(String id){
+		for(Client client : cfg){
+			if(client.getId().equals(id))
+				return cfg.indexOf(client);
+		}
+		return -1;
 	}
 
 }

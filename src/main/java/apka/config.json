@@ -1,1 +1,1 @@
-[{"port":1234,"ip":"0.0.0.0","name":"GPS","methods":["get_pos_info","get_sat_info"]},{"port":2345,"ip":"1.2.3.4","name":"GPRS","methods":["get","post","sms"]}]
+[{"port":12344,"ip":"0.0.0.0","name":"DUPA","methods":["PENIS","CYCKI"],"id":"607efe641b88fa02dab18119f768d315"},{"port":12344,"ip":"0.0.0.0","name":"DUPA","methods":["PENIS","CYCKI"],"id":"3dffd8a06b8a412e53aa1eed5e950772"},{"port":1234,"ip":"0.0.0.0","name":"GPS","methods":["get_pos_info","get_sat_info"],"id":"d019104cc4fe47916fcad95750d04873"}]
