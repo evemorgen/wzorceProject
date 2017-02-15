@@ -51,17 +51,17 @@ class At_command:
     def sendPost(self,url,headers,data):
         head, req = url.split('/', 1)
         req = '/' + req
-
+        atHeaders = []
         for hedy in headers:
-            hedy = '%s\r\n' %hedy
+            atHeaders = atHeaders + ['%s\r\n' %hedy]
 
-        headers[-1] = headers[-1] + '\r\n'
+        atHeaders[-1] = atHeaders[-1] + '\r\n'
         commandTab = [
         'at+cipstart="TCP","%s","80"\r\n' %head,
         'at+cipsend\r\n',
         'POST %s HTTP/1.1\r\n' % req,
         'Host: %s\r\n' % head,
-        'Content-Length: %d\r\n' % len(data)] + headers + [
+        'Content-Length: %d\r\n' % len(data)] + atHeaders + [
         '%s\r\n' %data,
         str(chr(26)),
         'at+cipclose'
