@@ -1,1 +1,1 @@
-{"gpsPort":1911,"gpsIP":"0.0.0.0","gprsIP":"0.0.0.1","port":7779,"ip":"0.0.0.1","gprsPort":9111}
+[{"port":1234,"ip":"0.0.0.0","name":"GPS","methods":["get_pos_info","get_sat_info"]},{"port":2345,"ip":"1.2.3.4","name":"GPRS","methods":["get","post","sms"]}]

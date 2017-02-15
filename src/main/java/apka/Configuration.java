@@ -2,11 +2,13 @@ package apka;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 public class Configuration {
 
@@ -14,8 +16,8 @@ public class Configuration {
 
 	public static final String FILENAME = "src/main/java/apka/config.json";
 
-	private HashMap<String, Object> cfg;
-
+	private List<Client> cfg = new ArrayList<Client>();
+	
 	private static final Logger LOGGER = Logger.getLogger(Configuration.class.getName());
 
 	public static Configuration getInstance() {
@@ -32,20 +34,19 @@ public class Configuration {
 
 	private void loadConfig(String fileName) {
 		try {
-
-			this.cfg = new ObjectMapper().readValue(new File(fileName), HashMap.class);
+			cfg = new ObjectMapper().readValue(new File(fileName), TypeFactory.defaultInstance().constructCollectionType(ArrayList.class, Client.class));
 
 		} catch (IOException ex) {
 			LOGGER.log(Level.SEVERE, null, ex);
 		}
 	}
 
-	public Object getItem(String key) {
-		return this.cfg.get(key);
+	public Client getClient(int index) {
+		return this.cfg.get(index);
 	}
 
-	public void setItem(String key, Object value) {
-		this.cfg.put(key, value);
+	public void setClient(Client client) {
+		this.cfg.add(client);
 	}
 
 	public void saveJson() {
