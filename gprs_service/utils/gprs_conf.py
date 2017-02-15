@@ -2,33 +2,36 @@ import serial
 import time
 import serial_init
 
-class Gprs_conf(ser):
+class Gprs_conf():
 
-    def reader(self,t,ser):
+    def __init__(self, Serial_init.console):
+        self.ser = Serial_init.console
+
+    def reader(self,t):
         out = ''
         time.sleep(t)
-        while ser.console.inWaiting() > 0:
-            out += ser.console.read(1)
+        while self.ser.inWaiting() > 0:
+            out += self.ser.read(1)
         if out != '':
             print ">>" + out
         time.sleep(10)
 
-    def setConf(self,ser):    
-        ser.console.isOpen()
+    def setConf(self):    
+        self.ser.isOpen()
         time.sleep(1)
-        ser.console.write('at+cfun=1,1\r\n')
+        self.ser.write('at+cfun=1,1\r\n')
         self.reader(2)
-        ser.console.write('at+creg=1\r\n')
+        self.ser.write('at+creg=1\r\n')
         self.reader(2)
-        ser.console.write('at+cgatt=1\r\n')
+        self.ser.write('at+cgatt=1\r\n')
         self.reader(2)
-        ser.console.write('at+cstt="internet.cp","",""\r\n')
+        self.ser.write('at+cstt="internet.cp","",""\r\n')
         self.reader(2)
-        ser.console.write('at+ciicr\r\n')
+        self.ser.write('at+ciicr\r\n')
         self.reader(2)
-        ser.console.write('at+cifsr\r\n')
+        self.ser.write('at+cifsr\r\n')
         self.reader(2)
 
 
-conf = Gprs_conf(Serial_init)
-conf.setConf(Serial_init)
+conf = Gprs_conf()
+conf.setConf()
