@@ -1,6 +1,6 @@
 import serial
 import time
-from .serial_init import Serial_init
+import serial_init
 
 class Gprs_conf():
 
