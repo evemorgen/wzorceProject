@@ -55,7 +55,10 @@ class At_command:
         commandTab = [
         'at+cipstart="TCP","%s","80"\r\n' %head,
         'at+cipsend\r\n',
-        'POST %s HTTP/1.1\r\n\r\n' % req,
+        'POST %s HTTP/1.1\r\n' % req,
+        'Host: %s\r\n' % head,
+        'Content-Length: %d\r\n' % len(params),
+        'Content-Type: application/x-www-form-urlencoded\r\n\r\n'
         '%s\r\n' %params,
         str(chr(26))
         ]
