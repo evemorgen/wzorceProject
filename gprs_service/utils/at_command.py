@@ -63,7 +63,7 @@ class At_command:
 
 gprs = At_command()
 gprs.config()
-grps.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
+gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
 gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=POSTdupa')
 
 
