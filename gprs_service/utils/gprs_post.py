@@ -21,17 +21,27 @@ class Gprs_post:
 
     def send(self,url):
         head, req = url.split('/', 1)
-        req = '/' + req
+        req, params = req.split('?', 1)
+        # print head, req, params, len(params)
         self.console.isOpen()
         time.sleep(1)
         self.console.write('at+cipstart="TCP","'+head+'","80"\r\n')
         self.reader(2)
         self.console.write('at+cipsend\r\n')
         self.reader(2)
-        self.console.write('POST '+req+' HTTP/1.0\r\n\r\n')
+        self.console.write('POST /%s HTTP/1.1\r\n' % req)
+        time.sleep(0.5)
+        self.console.write('Host: %s\r\n' % head)
+        time.sleep(0.5)
+        self.console.write('Content-Length: %d\r\n' % len(params))
+        time.sleep(0.5)
+        self.console.write('Content-Type: application/x-www-form-urlencoded\r\n\r\n')
+        time.sleep(0.5)
+        self.console.write(params + '\r\n')
         time.sleep(0.5)
         self.console.write(str(unichr(26)))
         self.reader(2)
+        
 
 
 
