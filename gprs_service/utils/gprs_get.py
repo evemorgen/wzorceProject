@@ -20,8 +20,8 @@ class Gprs_get:
 
 
     def send(self,url):
-        head, req = url.split('\', 1)
-        req = '\' ++ req
+        head, req = url.split('/', 1)
+        req = '/' ++ req
 
 
 
