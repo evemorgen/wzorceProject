@@ -4,7 +4,7 @@ import serial_init
 
 class Gprs_conf():
 
-    def __init__(self, Serial_init):
+    def __init__(self):
         self.ser = Serial_init.console
 
     def reader(self,t):
