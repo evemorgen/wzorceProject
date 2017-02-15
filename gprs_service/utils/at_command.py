@@ -40,7 +40,7 @@ class At_command:
         'at+cipstart="TCP","\%s","80"\r\n' %head,
         'at+cipsend\r\n',
         'GET \%s HTTP/1.0\r\n\r\n' %req,
-        str(unichr(26))
+        str(chr(26))
         ]
         for com in commandTab:
             self.console.write(str.encode(com))
@@ -54,7 +54,7 @@ class At_command:
         'at+cipsend\r\n',
         'POST /%s HTTP/1.1\r\n' % req,
         '\%s\r\n\r\n' %params,
-        str(unichr(26))
+        str(chr(26))
         ]
         for com in commandTab:
             self.console.write(str.encode(com))
