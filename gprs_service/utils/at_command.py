@@ -72,10 +72,23 @@ class At_command:
             self.console.write(str.encode(com))
             self.reader(2,2)
 
+    def sendSms(self,number,txt):
+        commandTab = [
+        'at+cmgs="%s"\r\n' %number,
+        txt + '\r\n',
+        str(chr(26))
+        ]
+        self.console.isOpen()
+        time.sleep(0.5)
+        for com in commandTab:
+            self.console.write(str.encode(com))
+            self.reader(2,2)
+
+
 
 gprs = At_command()
 gprs.config()
 gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
 gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',['Content-Type: application/x-www-form-urlencoded'],'ip=DUPOWY_POST_RULEZ')
-
+gprs.sendSms('+48507861428', 'proces konfiguracji, get oraz post przeszly poprawnie')
 
