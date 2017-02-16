@@ -2,7 +2,7 @@ import serial
 import time
 
 
-class At_command:
+class AtCommand:
     def __init__(self):
         self.console = serial.Serial(
             port='/dev/ttyAMA0',
@@ -19,7 +19,7 @@ class At_command:
         time.sleep(tt)
 
     def config(self):
-        commandTab = [
+        command_tab = [
             'at+cfun=1,1\r\n',
             'at+creg=1\r\n',
             'at+cgatt=1\r\n',
@@ -30,14 +30,14 @@ class At_command:
         ]
         self.console.isOpen()
         time.sleep(0.5)
-        for com in commandTab:
+        for com in command_tab:
             self.console.write(str.encode(com))
             self.reader(2, 8)
 
-    def sendGet(self, url):
+    def send_get(self, url):
         head, req = url.split('/', 1)
         req = '/' + req
-        commandTab = [
+        command_tab = [
             'at+cipstart="TCP","%s","80"\r\n' % head,
             'at+cipsend\r\n',
             'GET %s HTTP/1.0\r\n\r\n' % req,
@@ -45,36 +45,36 @@ class At_command:
         ]
         self.console.isOpen()
         time.sleep(0.5)
-        for com in commandTab:
+        for com in command_tab:
             self.console.write(str.encode(com))
             self.reader(2, 2)
 
-    def sendPost(self, url, headers, data):
+    def send_post(self, url, headers, data):
         head, req = url.split('/', 1)
         req = '/' + req
-        atHeaders = []
+        at_headers = []
         for hedy in headers:
-            atHeaders = atHeaders + ['%s\r\n' % hedy]
+            at_headers = at_headers + ['%s\r\n' % hedy]
 
-        atHeaders[-1] = atHeaders[-1] + '\r\n'
-        commandTab = [
+        at_headers[-1] = at_headers[-1] + '\r\n'
+        command_tab = [
             'at+cipstart="TCP","%s","80"\r\n' % head,
             'at+cipsend\r\n',
             'POST %s HTTP/1.1\r\n' % req,
             'Host: %s\r\n' % head,
-            'Content-Length: %d\r\n' % len(data)] + atHeaders + [
+            'Content-Length: %d\r\n' % len(data)] + at_headers + [
             '%s\r\n' % data,
             str(chr(26)),
             'at+cipclose\r\n'
         ]
         self.console.isOpen()
         time.sleep(0.5)
-        for com in commandTab:
+        for com in command_tab:
             self.console.write(str.encode(com))
             self.reader(2, 2)
 
-    def sendSms(self, number, txt):
-        commandTab = [
+    def send_sms(self, number, txt):
+        command_tab = [
             'at+cmgf=1\r\n',
             'at+cmgs="%s"\r\n' % number,
             '%s\r\n' % txt,
@@ -82,19 +82,19 @@ class At_command:
         ]
         self.console.isOpen()
         time.sleep(0.5)
-        for com in commandTab:
+        for com in command_tab:
             self.console.write(str.encode(com))
             self.reader(2, 2)
 
-gprs = At_command()
+gprs = AtCommand()
 gprs.config()
-gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
-gprs.sendPost(
+gprs.send_get('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
+gprs.send_post(
     'student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',
     ['Content-Type: application/x-www-form-urlencoded'],
     'ip=DUPOWY_POST_RULEZ'
 )
-gprs.sendSms(
+gprs.send_sms(
     '+48507861428',
     'proces konfiguracji, get oraz post przeszly poprawnie'
 )
