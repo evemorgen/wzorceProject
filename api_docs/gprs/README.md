@@ -132,7 +132,7 @@ Available actions are:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method does not requires any parameters, you need to pass an object with: - {"action": "conf"}
+        This method does not requires any parameters, you need to pass an object with: - {"method": "conf"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -142,7 +142,7 @@ Available actions are:
 Example usage:
 
 ```
-curl -X POST 192.168.1.123:6969/ -d '{"action": "conf"}'
+curl -X POST 192.168.1.123:6969/ -d '{"method": "conf"}'
 ```
 
 Return:
@@ -158,7 +158,7 @@ Return:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method requires additional parameter url you want to GET, you need to pass an object with: - {"action": "get","url": "your url"}
+        This method requires additional parameter url you want to GET, you need to pass an object with: - {"method": "get","url": "your url"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -168,7 +168,7 @@ Return:
 Example usage:
 
 ```
-curl -X POST 192.168.1.123:6969/ -d '{"action": "get", "url": "student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETtest"}'
+curl -X POST 192.168.1.123:6969/ -d '{"method": "get", "url": "student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETtest"}'
 ```
 
 Return:
@@ -184,7 +184,7 @@ Return:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method requires additional parameter url you want to post, headers list to set and data you want to send, you need to pass an object with: - {"action": "get","url": "your url", "headers": "[h1,h2,h3]", "data": "your data"}
+        This method requires additional parameter url you want to post, headers list to set and data you want to send, you need to pass an object with: - {"method": "get","url": "your url", "headers": ["h1","h2","h3"], "data": "your data"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -194,7 +194,7 @@ Return:
 Example usage:
 
 ```
-curl -X POST 192.168.1.123:6969/ -d '{"action": "post", "url": "student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php", "headers": "['Content-Type: application/x-www-form-urlencoded']", "data": "ip=POSTtest"}'
+curl -X POST 192.168.1.123:6969/ -d '{"method": "post", "url": "student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php", "headers": ["Content-Type: application/x-www-form-urlencoded"], "data": "ip=POSTtest"}'
 ```
 
 Return:
@@ -210,7 +210,7 @@ Return:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method requires additional parameter number data you want to send, you need to pass an object with: - {"action": "sms","number": "+48_your_number", "text": "text_you_want_to_send"}
+        This method requires additional parameter number data you want to send, you need to pass an object with: - {"method": "sms","number": "+48_your_number", "text": "text_you_want_to_send"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -220,7 +220,7 @@ Return:
 Example usage:
 
 ```
-curl -X POST 192.168.1.123:6969/ -d '{""action": "sms","number": "+48_your_number", "text": "text_you_want_to_send""}'
+curl -X POST 192.168.1.123:6969/ -d '{"method": "sms","number": "+48_your_number", "text": "text_you_want_to_send""}'
 ```
 
 Return:
