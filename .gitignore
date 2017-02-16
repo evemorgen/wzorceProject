@@ -1,0 +1,43 @@
+.class
+.classpath
+.project
+.settings
+
+# backup files 
+.orig
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp
+
+# Package Files #
+.jar
+.war
+.ear
+
+# IntelliJ Files#
+.iml
+.idea
+.iws
+.ipr
+
+# virtual machine crash logs, see httpwww.java.comendownloadhelperror_hotspot.xml
+hs_err_pid
+bin
+target
+
+.gradle
+build
+!gradlewrappergradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+
+### NetBeans ###
+nbprojectprivate
+build
+nbbuild
+dist
+nbdist
+.nb-gradle
