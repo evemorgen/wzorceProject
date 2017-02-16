@@ -74,6 +74,7 @@ class At_command:
 
     def sendSms(self,number,txt):
         commandTab = [
+        'at+cmgf=1',
         'at+cmgs="%s"\r\n' %number,
         txt + '\r\n',
         str(chr(26))
