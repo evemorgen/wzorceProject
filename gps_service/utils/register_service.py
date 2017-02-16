@@ -15,7 +15,9 @@ class Service():
         self.http_client = AsyncHTTPClient()
 
     def get_id(self, response):
-        print(response.body)
+        params = json.loads(response.body.decode('utf-8'))
+        self.ifc_id = params['id']
+        logging.info('Got an id, it is: %s', self.ifc_id)
 
     def register_interface(self):
         feed = {

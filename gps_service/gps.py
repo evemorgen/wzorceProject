@@ -28,7 +28,8 @@ if __name__ == '__main__':
     logging.info("starting gps app")
     coords = Coords()
     #gps_worker = GpsModuleWorker(coords)
-    service = Service('192.168.1.22', PORT, 'GPS', ['get_raw_frames', 'get_sat_info', 'get_pos_info', 'get_all_data'])
+    methods = [method for method in dir(coords) if callable(getattr(coords, method)) and method[0] != '_']
+    service = Service('192.168.1.22', PORT, 'GPS', methods)
     service.register_interface()
     app = make_app(coords)
     app.listen(PORT)
