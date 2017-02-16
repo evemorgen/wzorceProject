@@ -118,3 +118,114 @@ OK
 
 
 # 2. API
+API provides HTTP GET and POST, sending SMS and restarting and configurating module.
+You can choose action by specyfying "action" in json.
+Available actions are:
+	-conf
+	-get
+	-post
+	-sms
+	
+
+## conf
+<table>
+    <tr><td>Method: POST</td></tr>
+    <tr><td>Format: JSON</td></tr>
+    <tr><td>Parameters: <br /><br />
+        This method does not requires any parameters, you need to pass an object with method. - {"action": "conf"}
+        </tr></td>
+    <tr><td>Returns:     <br /><br />
+    Json object with: <br />?
+
+</table>
+
+Example usage:
+
+```
+curl -X POST 192.168.1.123:6969/ -d '{"action": "conf"}'
+```
+
+Return:
+```
+{
+?
+}
+```
+
+
+## get
+<table>
+    <tr><td>Method: POST</td></tr>
+    <tr><td>Format: JSON</td></tr>
+    <tr><td>Parameters: <br /><br />
+        This method requires additional parameter url you want to GET, you need to pass an object with method. - {"action": "get","url": "your url"}
+        </tr></td>
+    <tr><td>Returns:     <br /><br />
+    Json object with: <br />?
+
+</table>
+
+Example usage:
+
+```
+curl -X POST 192.168.1.123:6969/ -d '{"action": "get", "url": "student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETtest"}'
+```
+
+Return:
+```
+{
+?
+}
+```
+
+
+## post
+<table>
+    <tr><td>Method: POST</td></tr>
+    <tr><td>Format: JSON</td></tr>
+    <tr><td>Parameters: <br /><br />
+        This method requires additional parameter url you want to post, headers list to set and data you want to send, you need to pass an object with method. - {"action": "get","url": "your url", "headers": "[h1,h2,h3]", "data": "your data"}
+        </tr></td>
+    <tr><td>Returns:     <br /><br />
+    Json object with: <br />?
+
+</table>
+
+Example usage:
+
+```
+curl -X POST 192.168.1.123:6969/ -d '{"action": "post", "url": "student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php", "headers": "['Content-Type: application/x-www-form-urlencoded']", "data": "ip=POSTtest"}'
+```
+
+Return:
+```
+{
+?
+}
+```
+
+
+## sms
+<table>
+    <tr><td>Method: POST</td></tr>
+    <tr><td>Format: JSON</td></tr>
+    <tr><td>Parameters: <br /><br />
+        This method requires additional parameter number data you want to send, you need to pass an object with method. - {"action": "sms","number": "+48_your_number", "text": "text_you_want_to_send"}
+        </tr></td>
+    <tr><td>Returns:     <br /><br />
+    Json object with: <br />?
+
+</table>
+
+Example usage:
+
+```
+curl -X POST 192.168.1.123:6969/ -d '{""action": "sms","number": "+48_your_number", "text": "text_you_want_to_send""}'
+```
+
+Return:
+```
+{
+?
+}
+```
