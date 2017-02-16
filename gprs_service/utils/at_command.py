@@ -1,14 +1,15 @@
 import serial
 import time
 
+
 class At_command:
     def __init__(self):
         self.console = serial.Serial(
-        port='/dev/ttyAMA0',
-        baudrate=9600,
+            port='/dev/ttyAMA0',
+            baudrate=9600,
         )
 
-    def reader(self,t,tt):
+    def reader(self, t, tt):
         out = ''
         time.sleep(t)
         while self.console.inWaiting() > 0:
@@ -19,77 +20,81 @@ class At_command:
 
     def config(self):
         commandTab = [
-        'at+cfun=1,1\r\n',
-        'at+creg=1\r\n',
-        'at+cgatt=1\r\n',
-        'at+cstt="internet.cp","",""\r\n',
-        'at+ciicr\r\n',
-        'at+cifsr\r\n', 
-        'at+cmgf=1\r\n'
+            'at+cfun=1,1\r\n',
+            'at+creg=1\r\n',
+            'at+cgatt=1\r\n',
+            'at+cstt="internet.cp","",""\r\n',
+            'at+ciicr\r\n',
+            'at+cifsr\r\n',
+            'at+cmgf=1\r\n'
         ]
         self.console.isOpen()
         time.sleep(0.5)
         for com in commandTab:
             self.console.write(str.encode(com))
-            self.reader(2,8)
+            self.reader(2, 8)
 
-    def sendGet(self,url):
+    def sendGet(self, url):
         head, req = url.split('/', 1)
         req = '/' + req
         commandTab = [
-        'at+cipstart="TCP","%s","80"\r\n' %head,
-        'at+cipsend\r\n',
-        'GET %s HTTP/1.0\r\n\r\n' %req,
-        str(chr(26))
+            'at+cipstart="TCP","%s","80"\r\n' % head,
+            'at+cipsend\r\n',
+            'GET %s HTTP/1.0\r\n\r\n' % req,
+            str(chr(26))
         ]
         self.console.isOpen()
         time.sleep(0.5)
         for com in commandTab:
             self.console.write(str.encode(com))
-            self.reader(2,2)
+            self.reader(2, 2)
 
-    def sendPost(self,url,headers,data):
+    def sendPost(self, url, headers, data):
         head, req = url.split('/', 1)
         req = '/' + req
         atHeaders = []
         for hedy in headers:
-            atHeaders = atHeaders + ['%s\r\n' %hedy]
+            atHeaders = atHeaders + ['%s\r\n' % hedy]
 
         atHeaders[-1] = atHeaders[-1] + '\r\n'
         commandTab = [
-        'at+cipstart="TCP","%s","80"\r\n' %head,
-        'at+cipsend\r\n',
-        'POST %s HTTP/1.1\r\n' % req,
-        'Host: %s\r\n' % head,
-        'Content-Length: %d\r\n' % len(data)] + atHeaders + [
-        '%s\r\n' %data,
-        str(chr(26)),
-        'at+cipclose\r\n'
+            'at+cipstart="TCP","%s","80"\r\n' % head,
+            'at+cipsend\r\n',
+            'POST %s HTTP/1.1\r\n' % req,
+            'Host: %s\r\n' % head,
+            'Content-Length: %d\r\n' % len(data)] + atHeaders + [
+            '%s\r\n' % data,
+            str(chr(26)),
+            'at+cipclose\r\n'
         ]
         self.console.isOpen()
         time.sleep(0.5)
         for com in commandTab:
             self.console.write(str.encode(com))
-            self.reader(2,2)
+            self.reader(2, 2)
 
-    def sendSms(self,number,txt):
+    def sendSms(self, number, txt):
         commandTab = [
-        'at+cmgf=1\r\n',
-        'at+cmgs="%s"\r\n' %number,
-        '%s\r\n' %txt,
-        str(chr(26))
+            'at+cmgf=1\r\n',
+            'at+cmgs="%s"\r\n' % number,
+            '%s\r\n' % txt,
+            str(chr(26))
         ]
         self.console.isOpen()
         time.sleep(0.5)
         for com in commandTab:
             self.console.write(str.encode(com))
-            self.reader(2,2)
-
-
+            self.reader(2, 2)
 
 gprs = At_command()
 gprs.config()
 gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
-gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',['Content-Type: application/x-www-form-urlencoded'],'ip=DUPOWY_POST_RULEZ')
-gprs.sendSms('+48507861428', 'proces konfiguracji, get oraz post przeszly poprawnie')
-
+gprs.sendPost(
+    'student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',
+    ['Content-Type: application/x-www-form-urlencoded'],
+    'ip=DUPOWY_POST_RULEZ'
+)
+gprs.sendSms(
+    '+48507861428',
+    'proces konfiguracji, get oraz post przeszly poprawnie'
+)
