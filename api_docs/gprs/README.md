@@ -132,7 +132,7 @@ Available actions are:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method does not requires any parameters, you need to pass an object with method. - {"action": "conf"}
+        This method does not requires any parameters, you need to pass an object with: - {"action": "conf"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -158,7 +158,7 @@ Return:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method requires additional parameter url you want to GET, you need to pass an object with method. - {"action": "get","url": "your url"}
+        This method requires additional parameter url you want to GET, you need to pass an object with: - {"action": "get","url": "your url"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -184,7 +184,7 @@ Return:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method requires additional parameter url you want to post, headers list to set and data you want to send, you need to pass an object with method. - {"action": "get","url": "your url", "headers": "[h1,h2,h3]", "data": "your data"}
+        This method requires additional parameter url you want to post, headers list to set and data you want to send, you need to pass an object with: - {"action": "get","url": "your url", "headers": "[h1,h2,h3]", "data": "your data"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
@@ -210,7 +210,7 @@ Return:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method requires additional parameter number data you want to send, you need to pass an object with method. - {"action": "sms","number": "+48_your_number", "text": "text_you_want_to_send"}
+        This method requires additional parameter number data you want to send, you need to pass an object with: - {"action": "sms","number": "+48_your_number", "text": "text_you_want_to_send"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
     Json object with: <br />?
