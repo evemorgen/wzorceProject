@@ -76,7 +76,7 @@ class At_command:
         commandTab = [
         'at+cmgf=1',
         'at+cmgs="%s"\r\n' %number,
-        txt + '\r\n',
+        '%s\r\n' %txt,
         str(chr(26))
         ]
         self.console.isOpen()
@@ -88,8 +88,8 @@ class At_command:
 
 
 gprs = At_command()
-gprs.config()
-gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
-gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',['Content-Type: application/x-www-form-urlencoded'],'ip=DUPOWY_POST_RULEZ')
-gprs.sendSms('+48507861428', 'proces konfiguracji, get oraz post przeszly poprawnie')
+#gprs.config()
+#gprs.sendGet('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
+#gprs.sendPost('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',['Content-Type: application/x-www-form-urlencoded'],'ip=DUPOWY_POST_RULEZ')
+gprs.sendSms('+48500774118', 'proces konfiguracji, get oraz post przeszly poprawnie')
 
