@@ -130,7 +130,7 @@ Usage example:
 
 Call:
 ```
-curl -X GET 192.168.1.123:12345/methods -d '{"name": "GPS"}'
+curl -X GET 192.168.1.123:12345/methods?name=GPS
 ```
 Return:
 ```
@@ -141,7 +141,7 @@ Return:
 
 ----------
 
-1. request
+3. request
 <table>
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
