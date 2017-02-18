@@ -10,7 +10,7 @@ public class CheckModules extends TimerTask {
 		RestTemplate rest = new RestTemplate();
 		for (Client client : Configuration.getInstance().getCfg()) {
 			try {
-				String temp = rest.postForObject(client.getIp() + ":" + client.getPort(), null, String.class);
+				rest.postForObject(client.getIp() + ":" + client.getPort(), null, String.class);
 			} catch (Exception e) {
 				Configuration.getInstance().deleteClient(client.getId());
 			}
