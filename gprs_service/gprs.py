@@ -26,7 +26,7 @@ if __name__ == '__main__':
 	logging.info("start gprs module")
 	at = AtCommand()
 	methods = [method for method in dir(at) if callable(getattr(at, method)) and method[0] != '_']
-	service = Service('', PORT, 'GPRS', methods)
+	service = Service('192.168.1.123', PORT, 'GPRS', methods)
 	service.register_interface()
 	app = make_app(at)
 	app.listen(PORT)
