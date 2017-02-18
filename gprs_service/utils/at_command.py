@@ -17,7 +17,7 @@ class AtCommand:
         while self.console.inWaiting() > 0:
             out += self.console.read(1).decode()
         if out != '':
-            if 'ERROR' in out
+            if 'ERROR' in out:
                 self.status = 'ERROR'
                 print ("ERROR")
             print (">>" + out)
