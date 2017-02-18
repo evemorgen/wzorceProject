@@ -11,7 +11,7 @@ class AtCommand:
         )
         self.status = 'OK'
 
-    def reader(self, t, tt, status):
+    def reader(self, t, tt):
         out = ''
         time.sleep(t)
         while self.console.inWaiting() > 0:
