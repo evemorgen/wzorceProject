@@ -24,7 +24,7 @@ class AtCommand:
         time.sleep(tt)
 
     def config(self):
-        sef.status = 'OK'
+        self.status = 'OK'
         command_tab = [
             'at+cfun=1,1\r\n',
             'at+creg=1\r\n',
@@ -42,7 +42,7 @@ class AtCommand:
         return self.status
 
     def send_get(self, url):
-        sef.status = 'OK'
+        self.status = 'OK'
         head, req = url.split('/', 1)
         req = '/' + req
         command_tab = [
@@ -59,7 +59,7 @@ class AtCommand:
         return self.status
 
     def send_post(self, url, headers, data):
-        sef.status = 'OK'
+        self.status = 'OK'
         head, req = url.split('/', 1)
         req = '/' + req
         at_headers = []
@@ -85,7 +85,7 @@ class AtCommand:
         return self.status
 
     def send_sms(self, number, txt):
-        sef.status = 'OK'
+        self.status = 'OK'
         command_tab = [
             'at+cmgf=1\r\n',
             'at+cmgs="%s"\r\n' % number,
