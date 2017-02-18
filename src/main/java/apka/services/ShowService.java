@@ -27,7 +27,7 @@ public class ShowService {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
-		return "{\"name\":" + s + "}";
+
+		return "{\"services\":" + s + "}";
 	}
 }
