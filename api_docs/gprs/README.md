@@ -132,10 +132,14 @@ Available actions are:
     <tr><td>Method: POST</td></tr>
     <tr><td>Format: JSON</td></tr>
     <tr><td>Parameters: <br /><br />
-        This method does not requires any parameters, you need to pass an object with: - {"method": "conf"}
+        This method does require only method string: - {"method": "conf"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
-    Json object with: <br />?
+    Json object with: <br />
+    <ul>
+        <li> status - string - OK/ERROR </li>
+        <li> result - list of strings - command results </li>
+    </ul>
 
 </table>
 
@@ -170,7 +174,11 @@ Return:
         This method requires additional parameter url you want to GET, you need to pass an object with: - {"method": "get","url": "your url"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
-    Json object with: <br />?
+    Json object with: <br />
+    <ul>
+        <li> status - string - OK/ERROR </li>
+        <li> result - list of strings - command results </li>
+    </ul>
 
 </table>
 
@@ -202,7 +210,11 @@ Return:
         This method requires additional parameter url you want to post, headers list to set and data you want to send, you need to pass an object with: - {"method": "get","url": "your url", "headers": ["h1","h2","h3"], "data": "your data"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
-    Json object with: <br />?
+    Json object with: <br />
+    <ul>
+        <li> status - string - OK/ERROR </li>
+        <li> result - list of strings - command results </li>
+    </ul>
 
 </table>
 
@@ -239,7 +251,11 @@ Return:
         This method requires additional parameter number data you want to send, you need to pass an object with: - {"method": "sms","number": "+48_your_number", "text": "text_you_want_to_send"}
         </tr></td>
     <tr><td>Returns:     <br /><br />
-    Json object with: <br />?
+    Json object with: <br />
+    <ul>
+        <li> status - string - OK/ERROR </li>
+        <li> result - list of strings - command results </li>
+    </ul>
 
 </table>
 
