@@ -1,5 +1,6 @@
 package apka;
 
+import java.util.ArrayList;
 import java.util.TimerTask;
 
 import org.springframework.web.client.RestTemplate;
@@ -8,12 +9,17 @@ public class CheckModules extends TimerTask {
 
 	public void run() {
 		RestTemplate rest = new RestTemplate();
+		ArrayList<Client> toRemove = new ArrayList<>();
 		for (Client client : Configuration.getInstance().getCfg()) {
 			try {
-				String temp = rest.postForObject(client.getIp() + ":" + client.getPort(), null, String.class);
+				System.out.println("SPRAWDZAM");
+				rest.postForObject(client.getIp() + ":" + client.getPort() + "/healthcheck", null, String.class);
 			} catch (Exception e) {
-				Configuration.getInstance().deleteClient(client.getId());
+				e.printStackTrace();
+				System.out.println("KILLER IS DEAD");
+				toRemove.add(client);
 			}
 		}
+		Configuration.getInstance().getCfg().removeAll(toRemove);
 	}
 }
