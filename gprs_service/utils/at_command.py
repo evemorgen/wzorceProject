@@ -11,7 +11,7 @@ class AtCommand:
         )
         self.status = 'OK'
 
-    def reader(self, t, tt):
+    def reader(self, t, tt, result):
         out = ''
         time.sleep(t)
         while self.console.inWaiting() > 0:
@@ -24,9 +24,12 @@ class AtCommand:
             print (">>" + out)
             logging.info(out)
             logging.info(self.status)
+            result = result.append(out)
         time.sleep(tt)
+        return result
 
     def config(self):
+        result = []
         self.status = 'OK'
         command_tab = [
             'at+cfun=1,1\r\n',
@@ -41,10 +44,13 @@ class AtCommand:
         time.sleep(0.5)
         for com in command_tab:
             self.console.write(str.encode(com))
-            self.reader(2, 8)
-        return self.status
+            out = self.reader(2, 8, result)
+            if out is not None:
+                result = out
+        return {"status": self.status, "result": result}
 
     def send_get(self, url):
+        result = []
         self.status = 'OK'
         head, req = url.split('/', 1)
         req = '/' + req
@@ -58,10 +64,13 @@ class AtCommand:
         time.sleep(0.5)
         for com in command_tab:
             self.console.write(str.encode(com))
-            self.reader(2, 2)
-        return self.status
+            out = self.reader(2, 2, result)
+            if out is not None:
+                result = out
+        return {"status": self.status, "result": result}
 
     def send_post(self, url, headers, data):
+        result = []
         self.status = 'OK'
         head, req = url.split('/', 1)
         req = '/' + req
@@ -84,10 +93,13 @@ class AtCommand:
         time.sleep(0.5)
         for com in command_tab:
             self.console.write(str.encode(com))
-            self.reader(2, 2)
-        return self.status
+            out = self.reader(2, 2, result)
+            if out is not None:
+                result = out
+        return {"status": self.status, "result": result}
 
     def send_sms(self, number, txt):
+        result = []
         self.status = 'OK'
         command_tab = [
             'at+cmgf=1\r\n',
@@ -98,9 +110,12 @@ class AtCommand:
         self.console.isOpen()
         time.sleep(0.5)
         for com in command_tab:
+            logging.info('%s - %s', com, result)
             self.console.write(str.encode(com))
-            self.reader(2, 2)
-        return self.status
+            out = self.reader(2, 2, result)
+            if out is not None:
+                result = out
+        return {"status": self.status, "result": result}
 
 #gprs = AtCommand()
 #gprs.config()

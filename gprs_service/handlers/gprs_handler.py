@@ -12,7 +12,7 @@ class GprsHandler(RequestHandler):
         self.methods = {
             'conf': at.config,
             'get': at.send_get,
-            'post': at.send_get,
+            'post': at.send_post,
             'sms': at.send_sms
         }
 
