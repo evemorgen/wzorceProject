@@ -1,4 +1,4 @@
 from .health_check_handler import HealthCheckHandler
-from .main_handler import MainHandler
+from .gprs_handler import GprsHandler
 
 __all__ = [HealthCheckHandler, GprsHandler]
