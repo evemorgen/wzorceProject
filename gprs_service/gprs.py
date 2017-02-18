@@ -17,7 +17,7 @@ PORT = 6969
 def make_app(at):
 	return Application([
 		(r'/healtcheck', HealthCheckHandler),
-		(r'/', GprsHandler, {"status": ans})
+		(r'/', GprsHandler, {"status": status})
 	])
 
 

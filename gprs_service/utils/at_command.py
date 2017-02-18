@@ -20,7 +20,10 @@ class AtCommand:
             if 'ERROR' in out:
                 self.status = 'ERROR'
                 print ("ERROR")
+                logging.info(self.status)
             print (">>" + out)
+            logging.info(out)
+            logging.info(self.status)
         time.sleep(tt)
 
     def config(self):
@@ -99,14 +102,14 @@ class AtCommand:
             self.reader(2, 2)
         return self.status
 
-gprs = AtCommand()
-gprs.config()
-gprs.send_get('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
-gprs.send_post(
-    'student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',
-    ['Content-Type: application/x-www-form-urlencoded'],
-    'ip=DUPOWY_POST_RULEZ'
-)
+#gprs = AtCommand()
+#gprs.config()
+#gprs.send_get('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
+#gprs.send_post(
+ #   'student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',
+  #  ['Content-Type: application/x-www-form-urlencoded'],
+   # 'ip=DUPOWY_POST_RULEZ'
+#)
 #gprs.send_sms(
  #   '+48507861428',
   #  'proces konfiguracji, get oraz post przeszly poprawnie'
