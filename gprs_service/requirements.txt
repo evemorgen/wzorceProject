@@ -1,0 +1,5 @@
+coloredlogs==5.2
+tornado==4.4
+pynmea2==1.7.1
+pigpio
+pyserial

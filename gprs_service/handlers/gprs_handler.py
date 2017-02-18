@@ -5,7 +5,7 @@ from tornado.web import RequestHandler
 from tornado.gen import coroutine
 
 
-class MainHandler(RequestHandler):
+class GprsHandler(RequestHandler):
 
     def initialize(self, at):
         self.at = at
@@ -26,7 +26,7 @@ class MainHandler(RequestHandler):
         logging.info('post in gprs handler')
         params = json.loads(self.request.body.decode('utf-8'))
         if 'method' in params:
-            if params['method'] == 'config':
+            if params['method'] == 'conf':
                 result = self.methods[params['method']]()
             if params['method'] == 'get':
                 result = self.methods[params['method']](params['url'])
