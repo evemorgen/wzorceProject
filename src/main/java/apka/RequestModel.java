@@ -6,8 +6,8 @@ public class RequestModel {
 
 	String service;
 	String method;
-	Map<String, Integer> data;
-	
+	Map<String, Object> data;
+
 	public String getService() {
 		return service;
 	}
@@ -20,10 +20,10 @@ public class RequestModel {
 	public void setMethod(String method) {
 		this.method = method;
 	}
-	public Map<String, Integer> getData() {
+	public Map<String, Object> getData() {
 		return data;
 	}
-	public void setData(Map<String, Integer> data) {
+	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
 }
