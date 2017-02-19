@@ -5,18 +5,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimerTask;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 public class ServicesHandling extends TimerTask {
 
+	@Value("${gateway.ip}")
+	String ip;
+	@Value("${gateway.port}")
+	String port;
+	@Value("${gateway.request}")
+	String urlRequest;
+	String url = "http://"+ip+":"+port+"/"+urlRequest;
 	private ArrayList<GetAllData> getAllDataArrayList = new ArrayList<GetAllData>();
 
 	public void run() {
 		RestTemplate rest = new RestTemplate();
 		for (Client client : Configuration.getInstance().getCfg()) {
 			if (client.getName().equals("GPS")){
-				String getAllData_message = "{\"method\": \""+client.getMethod()+"\"}";
-				getAllDataArrayList.add(rest.postForObject(client.getIp() + ":" + client.getPort(), getAllData_message, GetAllData.class));
+				String getAllData_message = "{\"service\": \""+client.getName()+"\", \"method\": \""+client.getMethod()+"}";
+				getAllDataArrayList.add(rest.postForObject(url, getAllData_message, GetAllData.class));
 			}
 			if (client.getName().equals("external")){
 				GetAllData lastAllDataInfo = getAllDataArrayList.remove(getAllDataArrayList.size()-1);
@@ -32,5 +40,6 @@ public class ServicesHandling extends TimerTask {
 				rest.getForEntity(uri, null, params);
 			}
 		}
+
 	}
 }

@@ -1,7 +1,5 @@
 package apka;
 
-import java.util.ArrayList;
-
 public class Client {
 
 	private Integer port;

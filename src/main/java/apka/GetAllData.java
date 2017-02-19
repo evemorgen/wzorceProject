@@ -18,4 +18,5 @@ public class GetAllData{
     public String getTimestamp() { return this.timestamp; }
 
     public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+
 }
