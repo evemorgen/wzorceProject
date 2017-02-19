@@ -13,7 +13,7 @@ public class CheckModules extends TimerTask {
 		for (Client client : Configuration.getInstance().getCfg()) {
 			try {
 				System.out.println("SPRAWDZAM");
-				rest.postForObject(client.getIp() + ":" + client.getPort() + "/healthcheck", null, String.class);
+				rest.postForObject("http://" + client.getIp() + ":" + client.getPort() + "/healthcheck", null, String.class);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("KILLER IS DEAD");
