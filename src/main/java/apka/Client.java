@@ -7,7 +7,7 @@ public class Client {
 	private Integer port;
 	private String ip;
 	private String name;
-	private ArrayList<String> methods;
+	private String method;
 	private String id;
 	
 	public Integer getPort() {
@@ -28,11 +28,11 @@ public class Client {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<String> getMethods() {
-		return methods;
+	public String getMethod() {
+		return method;
 	}
-	public void setMethods(ArrayList<String> methods) {
-		this.methods = methods;
+	public void setMethod(String method) {
+		this.method = method;
 	}
 	public String getId() {
 		return id;

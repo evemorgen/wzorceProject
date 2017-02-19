@@ -11,6 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 		Timer timer = new Timer();
-		timer.schedule(new CheckModules(), 0, 30000);
+		timer.schedule(new ServicesHandling(), 0, 30000);
 	}
 }
