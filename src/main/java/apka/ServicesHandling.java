@@ -16,6 +16,8 @@ public class ServicesHandling extends TimerTask {
 	String port;
 	@Value("${gateway.request}")
 	String urlRequest;
+	@Value("${gateway.tram}")
+	String tramLine;
 	String url = "http://"+ip+":"+port+"/"+urlRequest;
 	private static int idSurvey = 0;
 	private ArrayList<GetAllData> getAllDataArrayList = new ArrayList<GetAllData>();
@@ -33,7 +35,7 @@ public class ServicesHandling extends TimerTask {
 				Map<String,String> params = new HashMap<String,String>();
 				params.put("lat", String.valueOf(lastAllDataInfo.getPos().getLatitude()));
 				params.put("lon", String.valueOf(lastAllDataInfo.getPos().getLongitude()));
-				params.put("line", "19");
+				params.put("line", tramLine);
 				params.put("ts", lastAllDataInfo.getTimestamp());
 				params.put("id", String.valueOf(idSurvey));
 				++idSurvey;
