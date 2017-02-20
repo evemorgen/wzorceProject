@@ -86,8 +86,7 @@ class AtCommand:
             'Host: %s\r\n' % head,
             'Content-Length: %d\r\n' % len(data)] + at_headers + [
             '%s\r\n' % data,
-            str(chr(26)),
-            'at+cipclose\r\n'
+            str(chr(26))
         ]
         self.console.isOpen()
         time.sleep(0.5)
