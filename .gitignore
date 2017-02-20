@@ -44,3 +44,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+*.swp
+*.swo
+*.pyc
