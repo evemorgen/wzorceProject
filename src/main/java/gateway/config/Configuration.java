@@ -1,4 +1,4 @@
-package apka;
+package gateway.config;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,11 +10,13 @@ import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import gateway.model.Client;
+
 public class Configuration {
 
 	private static Configuration instance = null;
 
-	public static final String FILENAME = "src/main/java/apka/config.json";
+	public static final String FILENAME = "config.json";
 
 	private List<Client> cfg = new ArrayList<Client>();
 

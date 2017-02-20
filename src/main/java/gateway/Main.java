@@ -1,9 +1,11 @@
-package apka;
+package gateway;
 
 import java.util.Timer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import gateway.services.CheckModules;
 
 @SpringBootApplication
 public class Main {

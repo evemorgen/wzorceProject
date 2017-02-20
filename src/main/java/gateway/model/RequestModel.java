@@ -1,4 +1,4 @@
-package apka;
+package gateway.model;
 
 import java.util.Map;
 

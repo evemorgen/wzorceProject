@@ -1,4 +1,4 @@
-package apka.services;
+package gateway.services;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import apka.Client;
-import apka.Configuration;
+import gateway.config.Configuration;
+import gateway.model.Client;
 
 @Service
 public class MethodsService {

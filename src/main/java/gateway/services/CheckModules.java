@@ -1,10 +1,13 @@
-package apka;
+package gateway.services;
 
 import java.util.ArrayList;
 import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.client.RestTemplate;
+
+import gateway.config.Configuration;
+import gateway.model.Client;
 
 public class CheckModules extends TimerTask {
 

@@ -1,4 +1,4 @@
-package apka.services;
+package gateway.services;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import apka.Client;
-import apka.Configuration;
+import gateway.config.Configuration;
+import gateway.model.Client;
 
 @Service
 public class RegisterService {

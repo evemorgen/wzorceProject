@@ -1,10 +1,10 @@
-package apka.services;
+package gateway.services;
 
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import apka.Configuration;
+import gateway.config.Configuration;
 
 @Service
 public class UnregisterService {

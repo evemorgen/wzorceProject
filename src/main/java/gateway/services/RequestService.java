@@ -1,4 +1,4 @@
-package apka.services;
+package gateway.services;
 
 import org.apache.log4j.Logger;
 
@@ -8,9 +8,9 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import apka.Client;
-import apka.Configuration;
-import apka.RequestModel;
+import gateway.config.Configuration;
+import gateway.model.Client;
+import gateway.model.RequestModel;
 
 @Service
 public class RequestService {

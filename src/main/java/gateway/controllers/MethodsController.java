@@ -1,4 +1,4 @@
-package apka.controllers;
+package gateway.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import apka.services.MethodsService;
+import gateway.services.MethodsService;
 
 @Controller
 @RequestMapping("/methods")
