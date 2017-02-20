@@ -1,2 +1,2 @@
-[{"port":1234,"ip":"0.0.0.0","name":"GPS","method":"get_all_data"},
-  {"port":1234,"ip":"0.0.0.0","name":"external","method":"real_data"}]
+[{"name":"GPS","method":"get_all_data"},
+  {"name":"GPRS","method":"get"}]

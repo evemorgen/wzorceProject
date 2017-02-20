@@ -46,11 +46,11 @@ public class Configuration {
 		return cfg;
 	}
 
-	public Service getClient(int index) {
+	public Service getSevice(int index) {
 		return this.cfg.get(index);
 	}
 
-	public void setClient(Service service) {
+	public void setService(Service service) {
 		this.cfg.add(service);
 	}
 

@@ -7,43 +7,60 @@ import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
 
 public class ServicesHandling extends TimerTask {
 
-	@Value("${gateway.ip}")
-	String ip;
-	@Value("${gateway.port}")
-	String port;
-	@Value("${gateway.request}")
-	String urlRequest;
-	@Value("${gateway.tram}")
-	String tramLine;
-	String url = "http://"+ip+":"+port+"/"+urlRequest;
-	private static int idSurvey = 0;
-	static Logger logger = Logger.getLogger(Register.class.getName());
+	private String ip;
+	private String port;
+	private String urlRequest;
+	private String tramLine;
+	private String serverAdress;
 
+	private static int idSurvey = 0;
+	static Logger logger = Logger.getLogger(Service.class.getName());
 	private ArrayList<GetAllData> getAllDataArrayList = new ArrayList<GetAllData>();
+
+	public ServicesHandling(String ip, String port, String urlRequest, String tramLine, String serverAdress) {
+		this.ip = ip;
+		this.port = port;
+		this.urlRequest = urlRequest;
+		this.tramLine = tramLine;
+		this.serverAdress = serverAdress;
+	}
 
 	public void run() {
 		RestTemplate rest = new RestTemplate();
 		for (Service service : Configuration.getInstance().getCfg()) {
 			if (service.getName().equals("GPS")){
-				String getAllData_message = "{\"service\": \""+ service.getName()+"\", \"method\": \""+ service.getMethod()+"}";
-				getAllDataArrayList.add(rest.postForObject(url, getAllData_message, GetAllData.class));
+				String url = "http://"+ip+":"+port+"/"+urlRequest;
+				String getAllData_message = "{\"service\": \""+ service.getName()+"\", \"method\": \""+ service.getMethod()+"\", \"data\": {}}";
+				try {
+					getAllDataArrayList.add(rest.postForObject(url, getAllData_message, GetAllData.class));
+				} catch (Exception e){
+					System.out.println("Problem with GPS: "+e.getMessage());
+				}
 			}
-			if (service.getName().equals("external") && !getAllDataArrayList.isEmpty()){
+
+			if (service.getName().equals("GPRS") && !getAllDataArrayList.isEmpty()){
+
+				String url = "http://"+ip+":"+port+"/"+urlRequest;
 				GetAllData lastAllDataInfo = getAllDataArrayList.remove(getAllDataArrayList.size()-1);
-				String uri = service.getIp() + ":" + service.getPort()+"/real_data/{lat}/{lon}/{line}/{ts}/{id}";
-				Map<String,String> params = new HashMap<String,String>();
-				params.put("lat", String.valueOf(lastAllDataInfo.getPos().getLatitude()));
-				params.put("lon", String.valueOf(lastAllDataInfo.getPos().getLongitude()));
-				params.put("line", tramLine);
-				params.put("ts", lastAllDataInfo.getTimestamp());
-				params.put("id", String.valueOf(idSurvey));
-				++idSurvey;
-				String response = rest.getForObject(uri, String.class, params);
-				logger.info("response: "+response);
+				String urlServer = serverAdress+"=lat: "+lastAllDataInfo.getPos().getLatitude()+"lon: "+lastAllDataInfo.getPos().getLongitude()
+						+"tram line: "+tramLine+"time stamp: "+lastAllDataInfo.getTimestamp();
+				String getToServer = "\"url\": \""+urlServer+"\"";
+
+				String saveData_message = "{\"service\": \""+ service.getName()+"\", \"method\": \""+ service.getMethod()+"\", \"data\": {"+getToServer+"}}";
+
+				try {
+					String response = rest.postForObject(url, saveData_message, String.class);
+					logger.info("response: "+response);
+				} catch (Exception e){
+					System.out.println("Problem with GPRS: "+e.getMessage());
+				}
 			}
 		}
 
