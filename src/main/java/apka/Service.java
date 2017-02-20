@@ -1,12 +1,11 @@
 package apka;
 
-public class Client {
+public class Service {
 
 	private Integer port;
 	private String ip;
 	private String name;
 	private String method;
-	private String id;
 	
 	public Integer getPort() {
 		return port;
@@ -31,12 +30,6 @@ public class Client {
 	}
 	public void setMethod(String method) {
 		this.method = method;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id){
-		this.id = id;
 	}
 	
 }

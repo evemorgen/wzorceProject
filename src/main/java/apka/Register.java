@@ -17,8 +17,8 @@ public class Register {
     RestTemplate rest = new RestTemplate();
 
     public void run(){
-        for (Client client : Configuration.getInstance().getCfg()){
-            String message = "{\"ip\": \""+client.getIp()+"\", \"port\": "+client.getPort()+", \"name\": "+client.getName()+", \"methods\": [\""+client.getMethod()+"\"]}";
+        for (Service service : Configuration.getInstance().getCfg()){
+            String message = "{\"ip\": \""+ service.getIp()+"\", \"port\": "+ service.getPort()+", \"name\": "+ service.getName()+", \"methods\": [\""+ service.getMethod()+"\"]}";
             try {
                 String ipService = rest.postForObject(url, message, String.class);
                 logger.info("ip: "+ipService);

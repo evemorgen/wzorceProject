@@ -16,7 +16,7 @@ public class Configuration {
 
 	public static final String FILENAME = "src/main/java/apka/config.json";
 
-	private List<Client> cfg = new ArrayList<Client>();
+	private List<Service> cfg = new ArrayList<Service>();
 
 	private static final Logger LOGGER = Logger.getLogger(Configuration.class.getName());
 
@@ -35,27 +35,23 @@ public class Configuration {
 	private void loadConfig(String fileName) {
 		try {
 			cfg = new ObjectMapper().readValue(new File(fileName),
-					TypeFactory.defaultInstance().constructCollectionType(ArrayList.class, Client.class));
+					TypeFactory.defaultInstance().constructCollectionType(ArrayList.class, Service.class));
 
 		} catch (IOException ex) {
 			LOGGER.log(Level.SEVERE, null, ex);
 		}
 	}
 
-	public List<Client> getCfg() {
+	public List<Service> getCfg() {
 		return cfg;
 	}
 
-	public Client getClient(int index) {
+	public Service getClient(int index) {
 		return this.cfg.get(index);
 	}
 
-	public void setClient(Client client) {
-		this.cfg.add(client);
-	}
-
-	public void deleteClient(String id) {
-		this.cfg.remove(this.findIndexById(id));
+	public void setClient(Service service) {
+		this.cfg.add(service);
 	}
 
 	public void saveJson() {
@@ -66,12 +62,5 @@ public class Configuration {
 		}
 	}
 
-	private int findIndexById(String id) {
-		for (Client client : cfg) {
-			if (client.getId().equals(id))
-				return cfg.indexOf(client);
-		}
-		return -1;
-	}
 
 }

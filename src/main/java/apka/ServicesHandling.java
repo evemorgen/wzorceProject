@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimerTask;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +21,8 @@ public class ServicesHandling extends TimerTask {
 	String tramLine;
 	String url = "http://"+ip+":"+port+"/"+urlRequest;
 	private static int idSurvey = 0;
+	static Logger logger = Logger.getLogger(Register.class.getName());
+
 	private ArrayList<GetAllData> getAllDataArrayList = new ArrayList<GetAllData>();
 
 	public void run() {
@@ -29,7 +32,7 @@ public class ServicesHandling extends TimerTask {
 				String getAllData_message = "{\"service\": \""+ service.getName()+"\", \"method\": \""+ service.getMethod()+"}";
 				getAllDataArrayList.add(rest.postForObject(url, getAllData_message, GetAllData.class));
 			}
-			if (service.getName().equals("external")){
+			if (service.getName().equals("external") && !getAllDataArrayList.isEmpty()){
 				GetAllData lastAllDataInfo = getAllDataArrayList.remove(getAllDataArrayList.size()-1);
 				String uri = service.getIp() + ":" + service.getPort()+"/real_data/{lat}/{lon}/{line}/{ts}/{id}";
 				Map<String,String> params = new HashMap<String,String>();
@@ -39,7 +42,8 @@ public class ServicesHandling extends TimerTask {
 				params.put("ts", lastAllDataInfo.getTimestamp());
 				params.put("id", String.valueOf(idSurvey));
 				++idSurvey;
-				rest.getForEntity(uri, null, params);
+				String response = rest.getForObject(uri, String.class, params);
+				logger.info("response: "+response);
 			}
 		}
 
