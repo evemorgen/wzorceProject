@@ -49,10 +49,10 @@ public class ServicesHandling extends TimerTask {
 
 				String url = "http://"+ip+":"+port+"/"+urlRequest;
 				GetAllData lastAllDataInfo = getAllDataArrayList.remove(getAllDataArrayList.size()-1);
-				String urlServer = serverAdress+"=lat: "+lastAllDataInfo.getPos().getLatitude()+"lon: "+lastAllDataInfo.getPos().getLongitude()
-						+"tram line: "+tramLine+"time stamp: "+lastAllDataInfo.getTimestamp();
+				String urlServer = serverAdress+"=lat:_"+lastAllDataInfo.getPos().getLatitude()+"_lon:_"+lastAllDataInfo.getPos().getLongitude()
+						+"_tram_line:_"+tramLine+"_time_stamp:_"+lastAllDataInfo.getTimestamp();
 				String getToServer = "\"url\": \""+urlServer+"\"";
-
+				System.out.print(serverAdress);
 				String saveData_message = "{\"service\": \""+ service.getName()+"\", \"method\": \""+ service.getMethod()+"\", \"data\": {"+getToServer+"}}";
 
 				try {
