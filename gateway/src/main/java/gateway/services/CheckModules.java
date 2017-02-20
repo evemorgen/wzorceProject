@@ -26,5 +26,6 @@ public class CheckModules extends TimerTask {
 			}
 		}
 		Configuration.getInstance().getCfg().removeAll(toRemove);
+		Configuration.getInstance().saveJson();
 	}
 }
