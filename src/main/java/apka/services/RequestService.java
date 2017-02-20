@@ -22,7 +22,6 @@ public class RequestService {
 	private String data;
 	private String payload;
 	private RestTemplate restTemplate = new RestTemplate();
-	private String result;
 
 	public String request(RequestModel requestModel) {
 		for (Client client : Configuration.getInstance().getCfg()) {
