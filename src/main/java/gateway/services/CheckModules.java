@@ -21,7 +21,6 @@ public class CheckModules extends TimerTask {
 				log.info("sprawdzam " + client.getName());
 				rest.postForObject("http://" + client.getIp() + ":" + client.getPort() + "/healthcheck", null, String.class);
 			} catch (Exception e) {
-				e.printStackTrace();
 				log.info("usuwam " + client.getName());
 				toRemove.add(client);
 			}
