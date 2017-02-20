@@ -115,16 +115,3 @@ class AtCommand:
             if out is not None:
                 result = out
         return {"status": self.status, "result": result}
-
-#gprs = AtCommand()
-#gprs.config()
-#gprs.send_get('student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php?ip=GETdupa')
-#gprs.send_post(
- #   'student.agh.edu.pl/~cvmorgen/skrypt_ipki/index.php',
-  #  ['Content-Type: application/x-www-form-urlencoded'],
-   # 'ip=DUPOWY_POST_RULEZ'
-#)
-#gprs.send_sms(
- #   '+48507861428',
-  #  'proces konfiguracji, get oraz post przeszly poprawnie'
-#)
