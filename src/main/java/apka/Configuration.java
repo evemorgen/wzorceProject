@@ -46,14 +46,6 @@ public class Configuration {
 		return cfg;
 	}
 
-	public Service getSevice(int index) {
-		return this.cfg.get(index);
-	}
-
-	public void setService(Service service) {
-		this.cfg.add(service);
-	}
-
 	public void saveJson() {
 		try {
 			new ObjectMapper().writeValue(new File(FILENAME), this.cfg);
