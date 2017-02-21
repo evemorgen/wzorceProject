@@ -1,19 +1,22 @@
 package gateway.services;
 
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import gateway.config.Configuration;
 import gateway.model.Client;
 
-public class CheckModules extends TimerTask {
+@Component
+public class CheckModules{
 
 	static Logger log = Logger.getLogger(CheckModules.class.getName());
 	
-	public void run() {
+	@Scheduled(fixedRate=30000)
+	public void check() {
 		RestTemplate rest = new RestTemplate();
 		ArrayList<Client> toRemove = new ArrayList<>();
 		for (Client client : Configuration.getInstance().getCfg()) {
@@ -26,5 +29,6 @@ public class CheckModules extends TimerTask {
 			}
 		}
 		Configuration.getInstance().getCfg().removeAll(toRemove);
+		Configuration.getInstance().saveJson();
 	}
 }
